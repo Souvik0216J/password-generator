@@ -26,11 +26,15 @@ function App() {
   const copyPass = () =>{
     window.navigator.clipboard.writeText(password)
     setButtonText('Copied')
+
+    setTimeout(() =>{
+      setButtonText('Copy')
+    }, 1000)
   }
 
   useEffect(() => {
     generatePass()
-  }, [length, numberAllowed, charAllowed, buttonText])
+  }, [length, numberAllowed, charAllowed])
 
   return (
     <div className='w-full max-w-md mx-auto shadow-md rounded-lg
@@ -43,7 +47,7 @@ function App() {
         />
         <button 
         onClick={copyPass}
-        className='text-white bg-green-500 px-3 py-0.5 outline-none shrink-0'>{buttonText}</button>
+        className='text-white bg-green-500 px-3 py-0.5 outline-none shrink-0 hover:bg-green-600'>{buttonText}</button>
       </div>
       <div className='flex items-center gap-x-2'>
         <input type="range"
@@ -65,6 +69,7 @@ function App() {
             }}
             name=''
             id=''
+            className='cursor-pointer'
           />
           <label htmlFor="number">Numbers</label>
 
@@ -78,8 +83,9 @@ function App() {
             }}
             name=''
             id=''
+            className='cursor-pointer'
           />
-          <label htmlFor="number">Charecter</label>
+          <label htmlFor="number">Charecters</label>
         </div>
 
       </div>
